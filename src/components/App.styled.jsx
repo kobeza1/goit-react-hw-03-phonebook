@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 
 export const Box = styled.div`
   padding: ${props => props.theme.spacing(2)};

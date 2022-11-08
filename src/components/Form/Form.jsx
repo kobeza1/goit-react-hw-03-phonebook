@@ -1,7 +1,12 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { FormStyled, Label, Input } from './Form.styled';
 
 class Form extends Component {
+  static propTypes = {
+    Submit: PropTypes.func.isRequired,
+  };
+
   state = {
     name: '',
     number: '',
@@ -29,6 +34,8 @@ class Form extends Component {
   };
 
   render() {
+    // console.log('Form render()');
+
     return (
       <FormStyled onSubmit={this.handleSubmit}>
         <Label>

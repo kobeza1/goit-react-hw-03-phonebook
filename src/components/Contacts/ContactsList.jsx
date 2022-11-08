@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
-import { Item, List } from './Contacts.styled';
+import { List, Item } from './ContactsList.styled';
 
-export const Contacts = ({ contacts, onClick }) => {
+export const ContactsList = ({ contacts, onClick }) => {
   return (
     <List>
       {contacts.map(({ id, name, number }) => {
@@ -20,7 +20,7 @@ export const Contacts = ({ contacts, onClick }) => {
   );
 };
 
-Contacts.propTypes = {
+ContactsList.propTypes = {
   contacts: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
@@ -28,5 +28,5 @@ Contacts.propTypes = {
       number: PropTypes.string.isRequired,
     })
   ),
-  onClick: PropTypes.func,
+  onClick: PropTypes.func.isRequired,
 };

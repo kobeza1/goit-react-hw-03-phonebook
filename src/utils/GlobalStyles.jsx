@@ -1,9 +1,6 @@
-import { Global, css } from '@emotion/react';
+import { createGlobalStyle } from 'styled-components';
 
-export const GlobalStyles = props => (
-  <Global
-    {...props}
-    styles={css`
+export const GlobalStyles = createGlobalStyle`
       body {
         color: gray;
         margin: 0;
@@ -56,6 +53,4 @@ export const GlobalStyles = props => (
         color: white;
         font-weight: 700;
       }
-    `}
-  />
-);
+      `;

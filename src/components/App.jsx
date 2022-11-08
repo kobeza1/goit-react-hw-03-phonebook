@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
 import Form from './Form/Form';
 import { Box } from './App.styled';
-import { Contacts } from './Contacts/Contacts';
+import { ContactsList } from './Contacts/ContactsList';
 import { Section } from './Section/Section';
 import { Filter } from './Filter/Filter';
 
@@ -16,6 +16,17 @@ class App extends Component {
     ],
     filter: '',
   };
+
+  componentDidMount() {
+    const contacts = JSON.parse(localStorage.getItem('contacts'));
+    if (contacts) this.setState({ contacts: contacts });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
 
   onFilterChange = event => {
     this.setState({ filter: event.currentTarget.value });
@@ -48,6 +59,7 @@ class App extends Component {
   };
 
   render() {
+    // console.log('App render()');
     const contactsFiltered = this.state.contacts.filter(contact =>
       contact.name.toLowerCase().includes(this.state.filter.toLowerCase())
     );
@@ -59,7 +71,10 @@ class App extends Component {
         </Section>
         <Section title={'Contacts'}>
           <Filter value={this.state.filter} onChange={this.onFilterChange} />
-          <Contacts contacts={contactsFiltered} onClick={this.onClickDelete} />
+          <ContactsList
+            contacts={contactsFiltered}
+            onClick={this.onClickDelete}
+          />
         </Section>
       </Box>
     );
